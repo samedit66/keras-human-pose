@@ -1,7 +1,7 @@
 import numpy as np
 from io import StringIO
-import PIL.Image
-from IPython.display import Image, display
+from PIL import Image
+# from IPython.display import Image, display
 
 # find connection in the specified sequence, center 29 is in the position 15
 limbSeq = [[2, 3], [2, 6], [3, 4], [4, 5], [6, 7], [7, 8], [2, 9], [9, 10],
@@ -25,15 +25,19 @@ def show_bgr_image(a, fmt='jpeg'):
     a = np.uint8(np.clip(a, 0, 255))
     a[:, :, [0, 2]] = a[:, :, [2, 0]]  # for B,G,R order
     f = StringIO()
-    PIL.Image.fromarray(a).save(f, fmt)
-    display(Image(data=f.getvalue()))
+    image = Image.fromarray(a)
+    image.save(f, fmt)
+    image.show()
+    # display(Image(data=f.getvalue()))
 
 
 def showmap(a, fmt='png'):
     a = np.uint8(np.clip(a, 0, 255))
     f = StringIO()
-    PIL.Image.fromarray(a).save(f, fmt)
-    display(Image(data=f.getvalue()))
+    image = Image.fromarray(a)
+    image.save(f, fmt)
+    image.show()
+    # display(Image(data=f.getvalue()))
 
 
 # def checkparam(param):
